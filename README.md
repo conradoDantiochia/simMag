@@ -33,7 +33,7 @@ Animación en dos fases: el selector de velocidades donde la partícula avanza e
 
 ```bash
 # 1. Clonar el repositorio
-git clone <url-del-repo>
+git clone https://github.com/conradoDantiochia/simMag.git
 cd magnetic-simulator
 
 # 2. Instalar dependencias
