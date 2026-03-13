@@ -52,24 +52,6 @@ export const circularMotion = (q: number, m: number, v: number, B: number) => {
   return { F, r, T, f }
 }
 
-// /** Prob 3: Alpha particle force */
-// export const lorentzForce = (q: number, v: Vec3, B: Vec3): Vec3 => {
-//   const vxB = cross(v, B)
-//   return scale(vxB, q)
-// }
-
-// /** Prob 4: Electron in vector fields */
-// export const electronForceVec = (v: Vec3, B: Vec3): Vec3 => {
-//   const q = -ELECTRON_CHARGE
-//   return lorentzForce(q, v, B)
-// }
-
-// /** Prob 6: Combined E and B force (Lorentz) */
-// export const totalLorentzForce = (q: number, v: Vec3, E: Vec3, B: Vec3): Vec3 => {
-//   const fE = scale(E, q)
-//   const fB = lorentzForce(q, v, B)
-//   return add(fE, fB)
-// }
 
 /** Prob 7: Mass spectrometer */
 export const massSpectrometer = (E: number, B: number, B0: number, m: number, q: number) => {
@@ -77,34 +59,3 @@ export const massSpectrometer = (E: number, B: number, B0: number, m: number, q:
   const r = m * v / (Math.abs(q) * B0)
   return { v, r }
 }
-
-// /** Prob 8: Force on current-carrying wire */
-// export const wireForce = (I: number, L: number, B: Vec3, direction: Vec3): Vec3 => {
-//   const mag_dir = magnitude(direction)
-//   const Lhat = scale(direction, L / mag_dir)
-//   const ILvec: Vec3 = scale(Lhat, I)
-//   return cross(ILvec, B)
-// }
-
-// /** Prob 11: Torque on magnetic dipole */
-// export const dipoleTorque = (N: number, I: number, A: number, B: number, theta_deg: number) => {
-//   const mu = N * I * A   // magnetic moment
-//   const theta = theta_deg * Math.PI / 180
-//   const tau = mu * B * Math.sin(theta)
-//   return { mu, tau }
-// }
-
-// /** Prob 12: Hall effect */
-// export const hallEffect = (RH: number, I: number, t: number, VH: number) => {
-//   const n = Math.abs(1 / (RH * ELECTRON_CHARGE))  // carrier density
-//   const B = Math.abs(VH * t / (RH * I))
-//   return { n, B }
-// }
-
-// /** Prob 13: Cyclotron */
-// export const cyclotron = (q: number, m: number, B: number, R: number) => {
-//   const f = Math.abs(q) * B / (2 * Math.PI * m)
-//   const vmax = Math.abs(q) * B * R / m
-//   const KE = 0.5 * m * vmax ** 2 / ELECTRON_CHARGE  // eV
-//   return { f, vmax, KE }
-// }
