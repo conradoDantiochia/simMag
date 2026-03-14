@@ -52,6 +52,24 @@ export const circularMotion = (q: number, m: number, v: number, B: number) => {
   return { F, r, T, f }
 }
 
+/** Prob 3: Alpha particle force */
+export const lorentzForce = (q: number, v: Vec3, B: Vec3): Vec3 => {
+  const vxB = cross(v, B)
+  return scale(vxB, q)
+}
+
+/** Prob 4: Electron in vector fields */
+export const electronForceVec = (v: Vec3, B: Vec3): Vec3 => {
+  const q = -ELECTRON_CHARGE
+  return lorentzForce(q, v, B)
+}
+
+/** Prob 6: Combined E and B force (Lorentz) */
+export const totalLorentzForce = (q: number, v: Vec3, E: Vec3, B: Vec3): Vec3 => {
+  const fE = scale(E, q)
+  const fB = lorentzForce(q, v, B)
+  return add(fE, fB)
+}
 
 /** Prob 7: Mass spectrometer */
 export const massSpectrometer = (E: number, B: number, B0: number, m: number, q: number) => {
