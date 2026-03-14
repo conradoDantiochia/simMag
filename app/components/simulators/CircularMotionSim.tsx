@@ -49,9 +49,8 @@ export default function CircularMotionSim() {
 
     scene.add(createFieldArrows(new THREE.Vector3(0,1,0), new THREE.Vector3(0,0,0), 4.5, 1.2, 0x1a4060, 0.55))
 
-    const bArrow = createArrow(new THREE.Vector3(0,1,0), new THREE.Vector3(-ORBIT_R-1.3, -0.2, 0), 2.0, C.rose, 0.15, 0.032)
+    const bArrow = createArrow(new THREE.Vector3(0,1,0), new THREE.Vector3(0, 0, 0), 2.0, C.rose, 0.15, 0.032)
     const bLabel = makeSprite('B', '#ff3d6b', 0.5)
-    bLabel.position.set(-ORBIT_R-1.3, 2.4, 0)
     scene.add(bArrow, bLabel)
 
     let arrowV: THREE.Group | null = null
@@ -92,6 +91,10 @@ export default function CircularMotionSim() {
       lblF = makeSprite('F', '#ffc832', 0.48)
       lblV.position.copy(particle.position.clone().addScaledVector(velDir, s.vLen + 0.4))
       lblF.position.copy(particle.position.clone().addScaledVector(frcDir, s.fLen + 0.4))
+
+      // Move B vector so it is drawn at the particle position instead of the plane
+      bArrow.position.copy(particle.position)
+      bLabel.position.set(particle.position.x, particle.position.y + 2.4, particle.position.z)
       scene.add(arrowV, arrowF, lblV, lblF)
 
       controls.update(); renderer.render(scene, camera)
